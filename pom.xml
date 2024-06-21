@@ -61,6 +61,34 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.cyclonedx</groupId>
+                <artifactId>cyclonedx-maven-plugin</artifactId>
+                <version>2.7.8</version> <!-- Use the latest version available -->
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>makeAggregateBom</goal>
+                        </goals>
+                        <configuration>
+                            <schemaVersion>1.5</schemaVersion>
+                            <outputFormat>xml</outputFormat>
+                            <outputName>bom</outputName>
+                            <includeBomSerialNumber>false</includeBomSerialNumber>
+                            <includeLicenseText>false</includeLicenseText>
+                            <components>
+                                <component>
+                                    <group>com.example</group>
+                                    <name>my-application</name>
+                                    <version>2.0.0</version>
+                                    <type>application</type>
+                                </component>
+                            </components>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
